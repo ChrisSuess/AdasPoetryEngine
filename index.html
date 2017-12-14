@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+		<title>Ada's Poetry Machine</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	</head>
+	
+	<body>
+		<div class="jumbotron">
+    		<h1>Ada's Poetry Engine</h1>
+    		<h2>WARNING: Using this machine can seriously damage your poems.</h2>
+		</div>
+
+
+
+		<h1 id="shansh"></h1>
+
+		<h1>
+		<textarea id="poem" rows="5" cols="50"> This is poem <br> 
+		add a new line <br> 
+		new line
+		</textarea>
+		<br>
+		<input type="button" value="Add Me!" onclick="alert('hello world')">
+		<input type="button" value="Add Me!" onclick="add()">
+		<input type="button" onclick="PrintPoem()" value="Make my poem!">
+		</h1>
+
+		<h1 id="Shansh"></h1>
+		
+		<script>
+		function PrintPoem() {
+    	var x = document.getElementById("poem").value;
+    	document.getElementById("Shansh").innerHTML = x;
+			}
+		</script>
+		
+		<h3>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+		<span id="f1" draggable="true" ondragstart="drag(event)"> I </span>
+ 		<span id="f2" draggable="true" ondragstart="drag(event)"> write </span>
+ 		<span id="f3" draggable="true" ondragstart="drag(event)"> poems </span>
+ 		<span id="f4" draggable="true" ondragstart="drag(event)"> on</span>
+ 		<span id="f5" draggable="true" ondragstart="drag(event)"> a</span>
+ 		<span id="f6" draggable="true" ondragstart="drag(event)"> computer</span>
+ 		<br>
+ 		<span id="f7" draggable="true" ondragstart="drag(event)"> so</span>
+ 		<span id="f8" draggable="true" ondragstart="drag(event)"> we</span>
+ 		<span id="f9" draggable="true" ondragstart="drag(event)"> can</span>
+ 		<span id="f10" draggable="true" ondragstart="drag(event)"> add</span>
+ 		<span id="f11" draggable="true" ondragstart="drag(event)"> things</span>
+		</div>
+		</h3>
+    	
+    	<input type="button" onclick="shuffle()" value="Shuffle my poem!">
+    	
+    	<script>
+    	function allowDrop(ev) {
+    	ev.preventDefault();
+		}
+
+		function drag(ev) {
+    	ev.dataTransfer.setData("Text", ev.target.id);
+		}
+
+		function drop(ev) {
+    	ev.preventDefault();
+    	var data = ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data));
+		}
+
+		$('#shuffle').click(function(){
+			var spanArray = [];
+			$('[id^=div]').each(function(){
+				spanArray.length = 0;
+				$(this).find('span').each(function(){
+					spanArray.push($(this));    
+				});
+				spanArray = shuffle(spanArray);
+				$(this).empty();
+				for(var i = 0;i<spanArray.length;i++)
+					$(this).append(spanArray[i]);    
+			 });  
+		});
+
+		function shuffle(o){ 
+			for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+			return o;
+		}
+		</script>
+		
+	</body>
+</html>
